@@ -5,7 +5,8 @@ version: '3.1'
 services:
     redis:
         image: 'redis:alpine'
-
+        volumes:
+            - './phpdocker/redis:/data'
     mysql:
         image: 'mysql:8.0'
         working_dir: /application
@@ -36,5 +37,6 @@ services:
         volumes:
             - '.:/application'
             - './phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/8.1/fpm/conf.d/99-overrides.ini'
+            - './phpdocker/php-fpm/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf'
         environment:
             - PHP_IDE_CONFIG=serverName=localhost

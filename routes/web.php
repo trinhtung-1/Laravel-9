@@ -1,7 +1,9 @@
 <?php
 
+use App\Mail\OrderShipped;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\TestController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,3 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/send-mail', function () {
+    Mail::to('trinhtung95@gmail.com')->send(new OrderShipped());
+});
+
+Route::get('/redis',[TestController::class,'index']);

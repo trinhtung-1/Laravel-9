@@ -40,3 +40,11 @@ services:
             - './phpdocker/php-fpm/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf'
         environment:
             - PHP_IDE_CONFIG=serverName=localhost
+    redis-commander:
+        container_name: redis-commander
+        hostname: redis-commander
+        image: rediscommander/redis-commander:latest
+        environment:
+            - REDIS_HOSTS=local:redis:6379
+        ports:
+            - "8081:8081"
